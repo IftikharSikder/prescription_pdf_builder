@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:final_project/main.dart';
 import 'package:final_project/methods/section_null_validator.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ Future<void> generatePdf(context) async {
 
     final generatedPdfFile = await HtmlToPdf.convertFromHtmlContent(
       htmlContent: """
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -110,6 +109,7 @@ Future<void> generatePdf(context) async {
             display: flex;
             align-items: flex-start;
             width: 100%;
+            height: 50%;
         }
         .vertical-divider {
             border-left: 2px solid #000;
@@ -120,14 +120,43 @@ Future<void> generatePdf(context) async {
         .complaints-section {
             margin-bottom: 20px;
         }
-        .complaint-text {
+        .complaint-title1 {
+            font-size: 16px;
+            font-weight: bold;
             margin-bottom: 20px;
+            
         }
-        .complaint-title {
+        .complaint-title2 {
             font-size: 16px;
             font-weight: bold;
         }
+        .complaint-title3 {
+            font-size: 14px;
+            font-weight: normal;
+        }
+        
+        .space2 {
+            height: 8vh;
+        }
+        
+    .container2 {
+      display: flex;
+      align-items: center;
+      padding-left: 5px;
+      gap: 20px;
+    }
+    .container2 img {
+      width: 50px;
+      height: 50px;
+    }
+    .container2 p {
+      font-size: 16px;
+      color: #000;
+      margin: 0;
+    }
+        
     </style>
+    
 </head>
 <body>
 
@@ -180,38 +209,38 @@ Future<void> generatePdf(context) async {
         <div class="column-div-left">
             <div class="complaints-section">
             <div class="complaint-text">
-                <div class="complaint-title">Owner's Complaint</div>
+                <div class="complaint-title1">Owner's Complaint</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Complaint</div>
+                <div class="complaint-title2">Demo Complaint</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Remarks</div>
+                <div class="complaint-title3">Demo Remarks</div>
             </div>
         </div>
 
         <!-- Repeat the complaints section for the second and third sets -->
         <div class="complaints-section">
             <div class="complaint-text">
-                <div class="complaint-title">Clinical Finding</div>
+                <div class="complaint-title1">Clinical Finding1</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Clinical Findings</div>
+                <div class="complaint-title2">Demo Clinical Findings</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Remarks</div>
+                <div class="complaint-title3">Demo Remarks</div>
             </div>
         </div>
 
         <div class="complaints-section">
             <div class="complaint-text">
-                <div class="complaint-title">Diagnosis</div>
+                <div class="complaint-title1">Diagnosis</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Diagnosis</div>
+                <div class="complaint-title2">Demo Diagnosis</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Remarks</div>
+                <div class="complaint-title3">Demo Remarks</div>
             </div>
         </div>
     </div>
@@ -219,36 +248,43 @@ Future<void> generatePdf(context) async {
      <div class="column-div-right">
             <div class="complaints-section">
             <div class="complaint-text">
-                <div class="complaint-title">RX</div>
+                <div class="complaint-title1">RX</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Medicines</div>
+                <div class="complaint-title2">Demo Medicines</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Remarks</div>
+                <div class="complaint-title3">Demo Remarks</div>
             </div>
         </div>
 
         <!-- Repeat the complaints section for the second and third sets -->
         <div class="complaints-section">
             <div class="complaint-text">
-                <div class="complaint-title">Advice</div>
+                <div class="complaint-title1">Advice</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Advice</div>
+                <div class="complaint-title2">Demo Advice</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title">Demo Remarks</div>
+                <div class="complaint-title3">Demo Remarks</div>
             </div>
         </div>
     </div>
         </div>
-
         </div>
+        
+        <div class="space2"></div>
+        
+    <div class="container2">
+    <img src="https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png" alt="QR Code">
+    <p>ডাক্তারের পরামর্শ ব্যতীত কোন ঔষধ পরিবর্তন যোগ্য নয়*</p>
+  </div>
+
 
 </body>
 </html>
-""",
+    """,
       printPdfConfiguration: PrintPdfConfiguration(
         targetDirectory: targetPath,
         targetName: targetFileName,
