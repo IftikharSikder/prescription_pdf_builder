@@ -1,6 +1,6 @@
 import 'package:flutter_quill/flutter_quill.dart';
 
-toolbarOptions(){
+toolbarOptions() {
   return const QuillSimpleToolbarConfigurations(
       showFontFamily: false,
       showAlignmentButtons: false,

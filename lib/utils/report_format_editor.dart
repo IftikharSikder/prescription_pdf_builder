@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-report_text_h1(text){
+report_text_h1(text) {
   return Row(
     children: [
       Padding(
@@ -14,9 +14,8 @@ report_text_h1(text){
   );
 }
 
-
-report_text_h2(text){
-  return  Row(
+report_text_h2(text) {
+  return Row(
     children: [
       Padding(
         padding: const EdgeInsets.only(
@@ -31,9 +30,8 @@ report_text_h2(text){
   );
 }
 
-
-report_text_h3(text){
-  return  Row(
+report_text_h3(text) {
+  return Row(
     children: [
       Padding(
         padding: const EdgeInsets.only(left: 13),

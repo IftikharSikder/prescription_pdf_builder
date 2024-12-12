@@ -1,31 +1,8 @@
-import 'dart:io';
-import 'package:final_project/main.dart';
-import 'package:final_project/methods/section_null_validator.dart';
-import 'package:flutter/material.dart';
-import 'package:html_to_pdf/html_to_pdf.dart';
+import 'package:final_project/utils/variables.dart';
 
-import 'package:fluttertoast/fluttertoast.dart';
-Future<void> generatePdf(context) async {
-
-  sectionNullValidation();
-
-  nameHtml = nameHtml?.replaceAll("<p>", "")
-      .replaceAll("</p>", "")
-      .replaceAll("<br/>", "");
-
-  DateTime now = DateTime.now();
-  try {
-    final downloadsDir = Directory("/storage/emulated/0/Download");
-    if (!downloadsDir.existsSync()) {
-      throw Exception("Downloads folder not found!");
-    }
-
-    final targetPath = downloadsDir.path;
-    final targetFileName = "prescripton_${now.day}_${now.hour}_${now.minute}_${now.second}";
-
-    final generatedPdfFile = await HtmlToPdf.convertFromHtmlContent(
-      htmlContent: """
-        <!DOCTYPE html>
+htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, gender) {
+  String htmlCode = """
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -67,7 +44,7 @@ Future<void> generatePdf(context) async {
             height: auto;
             border: 3px dotted #D9D9D9;
             display: flex;
-            align-items: center;
+            align-items: start;
             padding-left: 10px;
             font-size: 18px; 
         }
@@ -136,7 +113,7 @@ Future<void> generatePdf(context) async {
         }
         
         .space2 {
-            height: 8vh;
+            height: 21vh;
         }
         
     .container2 {
@@ -193,11 +170,11 @@ Future<void> generatePdf(context) async {
     <div class="two-columns">
         <div class="column">
             <div>Name: $nameHtml</div>
-            <div>Age: ${ageController.text.toString()}</div>
+            <div>Age: $age</div>
         </div>
         <div class="column">
             <div>Date: $formattedDate</div>
-            <div>Gender: ${selectedGender.toString()}</div>
+            <div>Gender: $gender</div>
         </div>
     </div>
     
@@ -284,28 +261,6 @@ Future<void> generatePdf(context) async {
 
 </body>
 </html>
-    """,
-      printPdfConfiguration: PrintPdfConfiguration(
-        targetDirectory: targetPath,
-        targetName: targetFileName,
-        printSize: PrintSize.A4,
-        printOrientation: PrintOrientation.Portrait,
-      ),
-    );
-
-    Fluttertoast.showToast(
-        msg: "Saved to $targetPath as $targetFileName",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM_LEFT,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.black,
-        textColor: Colors.white,
-        fontSize: 16.0
-    );
-
-  } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Error: $e")),
-    );
-  }
+    """;
+  return htmlCode;
 }

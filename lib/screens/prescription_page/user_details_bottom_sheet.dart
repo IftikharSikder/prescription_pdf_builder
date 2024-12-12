@@ -1,11 +1,11 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:final_project/main.dart';
-import 'package:final_project/methods/toolBarConfiguration.dart';
+import 'package:final_project/utils/toolBarConfiguration.dart';
+import 'package:final_project/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
-userDetailsDropDown(context) {
+userDetailsBottomSheet(context) {
   return showModalBottomSheet(
       isScrollControlled: true,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.horizontal()),
