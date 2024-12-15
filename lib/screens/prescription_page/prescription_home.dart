@@ -1,4 +1,4 @@
-import 'package:final_project/screens/prescription_page/user_details_bottom_sheet.dart';
+import 'package:final_project/screens/prescription_page/patients_info_bottom_sheet.dart';
 import 'package:final_project/utils/footer_button_style.dart';
 import 'package:final_project/utils/report_format_editor.dart';
 import 'package:final_project/utils/toolBarConfiguration.dart';
@@ -9,14 +9,14 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:vsc_quill_delta_to_html/vsc_quill_delta_to_html.dart';
 
-class PrescriptionPage extends StatefulWidget {
-  const PrescriptionPage({super.key});
+class PrescriptionHome extends StatefulWidget {
+  const PrescriptionHome({super.key});
 
   @override
-  State<PrescriptionPage> createState() => _HomePageState();
+  State<PrescriptionHome> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<PrescriptionPage> {
+class _HomePageState extends State<PrescriptionHome> {
   var headerEditorController = QuillController.basic();
   int primarySectionState = 0;
   int secondarySectionState = 0;
@@ -123,20 +123,22 @@ class _HomePageState extends State<PrescriptionPage> {
                                   //headerEditorController.document.delete(0, headerEditorController.document.length);
 
                                   if (sectionNumber == 0) {
+
                                     headerEditorController.document.delete(0, headerEditorController.document.length);
                                     headerSectionController.document.delete(0, headerSectionController.document.length);
-                                  } else if (sectionNumber == 1) {
-                                    primarySectionController.document
-                                        .delete(0, primarySectionController.document.length);
-                                    primaryEditorController.document.delete(0, primaryEditorController.document.length);
 
+                                  } else if (sectionNumber == 1) {
+
+                                    primarySectionController.document.delete(0, primarySectionController.document.length);
+                                    primaryEditorController.document.delete(0, primaryEditorController.document.length);
                                     primarySectionState = 0;
+
                                   } else if (sectionNumber == 2) {
-                                    secondaryEditorController.document
-                                        .delete(0, secondaryEditorController.document.length);
-                                    secondarySectionController.document
-                                        .delete(0, secondarySectionController.document.length);
+
+                                    secondaryEditorController.document.delete(0, secondaryEditorController.document.length);
+                                    secondarySectionController.document.delete(0, secondarySectionController.document.length);
                                     secondarySectionState = 0;
+
                                   }
                                 });
 
@@ -151,6 +153,7 @@ class _HomePageState extends State<PrescriptionPage> {
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7))),
                               onPressed: () {
                                 setState(() {
+
                                   if (sectionNumber == 1 && (primaryEditorController.document.length - 1) >= 1) {
                                     primarySectionState = 1;
 
@@ -202,20 +205,26 @@ class _HomePageState extends State<PrescriptionPage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Column(
         children: [
+          SizedBox(
+            height: screenHeight * 0.006,
+          ),
           Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 2),
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
               child: GestureDetector(
                 child: DottedBorder(
                   color: const Color(0xFFD9D9D9),
                   child: SizedBox(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height * .07,
+                    height: screenHeight * .0452, //Height 1
                     child: Center(
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width * .56,
+                        width: screenWidth * .56,
                         child: QuillEditor(
                           controller: headerSectionController,
                           focusNode: FocusNode(),
@@ -238,41 +247,37 @@ class _HomePageState extends State<PrescriptionPage> {
                 },
               )),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 8,right: 8,top: 8,bottom: 2.72),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               GestureDetector(
                 child: DottedBorder(
                   color: const Color(0xFFD9D9D9),
                   child: SizedBox(
-                      height: MediaQuery.of(context).size.height * .13,
-                      width: MediaQuery.of(context).size.width * .463,
-                      child: Center(
-                          child: (primarySectionState == 0)
-                              ? const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.add,
-                                      size: 40,
-                                    ),
-                                    Text("Add Primary Section")
-                                  ],
-                                )
-                              : Padding(
-                                  padding: const EdgeInsets.only(left: 8),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      QuillEditor(
-                                          controller: primarySectionController,
-                                          focusNode: FocusNode(),
-                                          configurations:
-                                          const QuillEditorConfigurations(enableInteractiveSelection: false),
-                                          scrollController: ScrollController())
-                                    ],
-                                  ),
-                                ))),
+                      height: screenHeight * .105, //-------------
+                      width: screenWidth * .460,
+                      child: (primarySectionState == 0)
+                          ? const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  size: 40,
+                                ),
+                                Text("Add Primary Section")
+                              ],
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: SingleChildScrollView(
+                                child: QuillEditor(
+                                    controller: primarySectionController,
+                                    focusNode: FocusNode(),
+                                    configurations:
+                                        const QuillEditorConfigurations(enableInteractiveSelection: false),
+                                    scrollController: ScrollController()),
+                              ),
+                            )),
                 ),
                 onTap: () {
                   setState(() {
@@ -286,35 +291,30 @@ class _HomePageState extends State<PrescriptionPage> {
                 child: DottedBorder(
                   color: const Color(0xFFD9D9D9),
                   child: SizedBox(
-                    height: MediaQuery.of(context).size.height * .13,
-                    width: MediaQuery.of(context).size.width * .463,
-                    child: Center(
-                      child: (secondarySectionState == 0)
-                          ? const Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  size: 40,
-                                ),
-                                Text("Add Secondary Section")
-                              ],
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  QuillEditor(
-                                      controller: secondarySectionController,
-                                      focusNode: FocusNode(),
-                                      configurations: const QuillEditorConfigurations(enableInteractiveSelection: false),
-                                      scrollController: ScrollController())
-                                ],
+                    height: screenHeight * .105,
+                    width: screenWidth * .460,
+                    child: (secondarySectionState == 0)
+                        ? const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.add,
+                                size: 40,
                               ),
+                              Text("Add Secondary Section")
+                            ],
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: SingleChildScrollView(
+                              child: QuillEditor(
+                                  controller: secondarySectionController,
+                                  focusNode: FocusNode(),
+                                  configurations: const QuillEditorConfigurations(enableInteractiveSelection: false),
+                                  scrollController: ScrollController()),
                             ),
-                    ),
+                          ),
                   ),
                 ),
                 onTap: () {
@@ -338,10 +338,10 @@ class _HomePageState extends State<PrescriptionPage> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 8, bottom: 4),
+                      padding: const EdgeInsets.only(left: 8, ),
                       child: SizedBox(
-                        height: MediaQuery.of(context).size.height * .06,
-                        width: MediaQuery.of(context).size.width * .463,
+                        height: screenHeight * .06,
+                        width: screenWidth * .4629,
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
@@ -363,7 +363,7 @@ class _HomePageState extends State<PrescriptionPage> {
                                 children: [
                                   const Text("Age : "),
                                   Flexible(
-                                    child: Text(ageController.text == null ? "" : ageController.text.toString()),
+                                    child: Text(ageController.text.isEmpty ? "" : ageController.text.toString()),
                                   )
                                 ],
                               ),
@@ -375,10 +375,10 @@ class _HomePageState extends State<PrescriptionPage> {
                   ),
                   Expanded(
                       child: Padding(
-                    padding: const EdgeInsets.only(right: 8, bottom: 4),
+                    padding: const EdgeInsets.only(right: 8, ),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * .06,
-                      width: MediaQuery.of(context).size.width * .463,
+                      height: screenHeight * .06,
+                      width: screenWidth * .4629,
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -424,13 +424,13 @@ class _HomePageState extends State<PrescriptionPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    width: MediaQuery.of(context).size.width * .42,
+                    width: screenWidth * .46,
                     decoration: BoxDecoration(
                         border: Border(
                       right: BorderSide(color: Colors.black),
                       top: BorderSide(color: Colors.black),
                     )),
-                    height: MediaQuery.of(context).size.height * .40,
+                    height: screenHeight * .40,
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 4),
@@ -438,30 +438,30 @@ class _HomePageState extends State<PrescriptionPage> {
                           children: [
                             report_text_h1("Owners Compliant"),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.012,
+                              height: screenHeight * 0.012,
                             ),
-                            report_text_h2("Demo Compliant"),
+                            report_text_h2("Mosquito Bite"),
                             report_text_h3("Demo Remarks"),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.05,
+                              height: screenHeight * 0.04,
                             ),
                             //--------------------------------------------
                             report_text_h1("Clinical Finding"),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.012,
+                              height: screenHeight * 0.012,
                             ),
-                            report_text_h2("Demo Clinical Findings"),
+                            report_text_h2("Dark Greenish Water"),
                             report_text_h3("Demo Remarks"),
 
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.05,
+                              height: screenHeight * 0.04,
                             ),
                             //-------------------------------------
                             report_text_h1("Diagnosis"),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.012,
+                              height: screenHeight * 0.012,
                             ),
-                            report_text_h2("Demo Diagnosis"),
+                            report_text_h2("Bacterial Infection"),
                             report_text_h3("Demo Remarks"),
 
                             const SizedBox(
@@ -476,7 +476,7 @@ class _HomePageState extends State<PrescriptionPage> {
                       border: Border(
                     top: BorderSide(color: Colors.black),
                   )),
-                  width: MediaQuery.of(context).size.width * .58,
+                  width: screenWidth * .54,
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.only(top: 3),
@@ -494,21 +494,21 @@ class _HomePageState extends State<PrescriptionPage> {
                             ],
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.003,
+                            height: screenHeight * 0.003,
                           ),
-                          report_text_h2("Demo Medicine"),
+                          report_text_h2("Andopan Powder 50 gm"),
                           report_text_h3("Demo Remarks"),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.05,
+                            height: screenHeight * 0.04,
                           ),
                           //----------------------------
                           report_text_h1("Advice"),
 
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.012,
+                            height: screenHeight * 0.012,
                           ),
 
-                          report_text_h2("Demo Advice"),
+                          report_text_h2("Keep the house clean"),
                           report_text_h3("Demo Remarks"),
 
                           const SizedBox(
@@ -527,8 +527,8 @@ class _HomePageState extends State<PrescriptionPage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20.0),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.1,
+                  height: screenHeight * 0.06,
+                  width: screenWidth * 0.1,
                   child: Image.network("https://docs.lightburnsoftware.com/legacy/img/QRCode/ExampleCode.png"),
                 ),
               ),
@@ -577,19 +577,37 @@ class _HomePageState extends State<PrescriptionPage> {
                   setState(() {
                     primarySectionState = 0;
                     secondarySectionState = 0;
-                    headerEditorController.document = Document();
-                    headerSectionController.document = Document();
 
-                    primaryEditorController.document = Document();
-                    primarySectionController.document = Document();
+                    headerEditorController.document.delete(0, headerEditorController.document.length);
+                    headerSectionController.document.delete(0, headerSectionController.document.length);
 
-                    secondaryEditorController.document = Document();
-                    secondarySectionController.document = Document();
+                    primaryEditorController.document.delete(0, primaryEditorController.document.length);
+                    primarySectionController.document.delete(0, primarySectionController.document.length);
 
-                    nameController.document = Document();
+                    secondaryEditorController.document.delete(0, secondaryEditorController.document.length);
+                    secondarySectionController.document.delete(0, secondarySectionController.document.length);
+
+                    nameController.document.delete(0, nameController.document.length);
+
                     formattedDate = "";
                     ageController.text = "";
                     selectedGender = "";
+
+                    // primarySectionState = 0;
+                    // secondarySectionState = 0;
+                    // headerEditorController.document = Document();
+                    // headerSectionController.document = Document();
+                    //
+                    // primaryEditorController.document = Document();
+                    // primarySectionController.document = Document();
+                    //
+                    // secondaryEditorController.document = Document();
+                    // secondarySectionController.document = Document();
+                    //
+                    // nameController.document = Document();
+                    // formattedDate = "";
+                    // ageController.text = "";
+                    // selectedGender = "";
                   });
                 },
                 child: Row(
@@ -608,7 +626,7 @@ class _HomePageState extends State<PrescriptionPage> {
                   ],
                 )),
             SizedBox(
-              width: MediaQuery.of(context).size.width * .019,
+              width: screenWidth * .019,
             ),
             GestureDetector(
               child: button(context, Icons.save, "Save", "0xFF358666", "0xFFFFFFFF", "download"),

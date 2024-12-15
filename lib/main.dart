@@ -1,4 +1,4 @@
-import 'package:final_project/screens/prescription_page/prescription_home_page.dart';
+import 'package:final_project/screens/prescription_page/prescription_home.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,8 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'DM',
+      ),
       debugShowCheckedModeBanner: false,
-      home: SafeArea(child: PrescriptionPage()),
+      home: SafeArea(child: PrescriptionHome()),
     );
   }
 }

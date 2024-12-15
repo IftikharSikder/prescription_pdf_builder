@@ -7,7 +7,6 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
-    <title>Poultry Consultancy</title>
     <style>
         body {
             font-family: DM Sans, DM Sans;
@@ -21,7 +20,7 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
         }
         .top-div {
             width: 100%;
-            height: 10vh;
+            height: 7vh;
             border: 3px dotted #D9D9D9;
             display: flex;
             justify-content: center;
@@ -31,13 +30,13 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
             margin-top: 20px;
         }
         .space {
-            height: 3vh;
+            height: 1vh;
         }
         .horizontal-divs {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            height: 20%;
+           
         }
         .horizontal-div {
             width: 49%;
@@ -49,7 +48,6 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
             font-size: 18px; 
         }
         .horizontal-div2 {
-            width: 1%;
             height: 20vh;
             display: flex;
             align-items: center;
@@ -113,25 +111,32 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
         }
         
         .space2 {
-            height: 21vh;
+            height: 29vh;
         }
         
     .container2 {
-      display: flex;
-      align-items: center;
-      padding-left: 5px;
-      gap: 20px;
-    }
-    .container2 img {
-      width: 50px;
-      height: 50px;
-    }
-    .container2 p {
-      font-size: 16px;
-      color: #000;
-      margin: 0;
-    }
-        
+    display: flex;
+    align-items: center; /* Vertically align image and text */
+    justify-content: space-between; /* Adjust spacing to position elements */
+    padding: 10px;
+    position: relative;
+}
+
+.container2 img {
+    width: 50px;
+    height: 50px;
+}
+
+.container2 p {
+    font-size: 16px;
+    color: #000;
+    margin: 0;
+    position: absolute; /* Makes the text independent of image alignment */
+    left: 50%; /* Centers the text horizontally */
+    transform: translateX(-50%); /* Adjusts text alignment to truly center */
+    text-align: center;
+    white-space: nowrap; 
+} 
     </style>
     
 </head>
@@ -189,7 +194,7 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
                 <div class="complaint-title1">Owner's Complaint</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title2">Demo Complaint</div>
+                <div class="complaint-title2">Mosquito Bite</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
                 <div class="complaint-title3">Demo Remarks</div>
@@ -202,7 +207,7 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
                 <div class="complaint-title1">Clinical Finding1</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title2">Demo Clinical Findings</div>
+                <div class="complaint-title2">Dark Greenish Water</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
                 <div class="complaint-title3">Demo Remarks</div>
@@ -214,7 +219,7 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
                 <div class="complaint-title1">Diagnosis</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title2">Demo Diagnosis</div>
+                <div class="complaint-title2">Bacterial Infection</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
                 <div class="complaint-title3">Demo Remarks</div>
@@ -225,10 +230,10 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
      <div class="column-div-right">
             <div class="complaints-section">
             <div class="complaint-text">
-                <div class="complaint-title1">RX</div>
+                <div class="complaint-title1">Rx</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title2">Demo Medicines</div>
+                <div class="complaint-title2">Andopan Powder 50 gm</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
                 <div class="complaint-title3">Demo Remarks</div>
@@ -241,7 +246,7 @@ htmlFormat(headerHtml, primarySectionHtml, secondarySectionHtml, nameHtml, age, 
                 <div class="complaint-title1">Advice</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
-                <div class="complaint-title2">Demo Advice</div>
+                <div class="complaint-title2">Keep the house clean</div>
             </div>
             <div class="complaint-text" style="padding-left: 4%;">
                 <div class="complaint-title3">Demo Remarks</div>

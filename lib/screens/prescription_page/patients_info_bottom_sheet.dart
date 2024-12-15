@@ -90,7 +90,7 @@ userDetailsBottomSheet(context) {
                                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7))),
                                         onPressed: () {
                                           selectedGender = "";
-                                          nameController.document = Document();
+                                          nameController.document.delete(0, nameController.document.length);
                                           formattedDate = "";
                                           ageController.text = "";
                                           Navigator.of(context).pop();

@@ -37,6 +37,7 @@ dependencies:
   path_provider: ^2.0.10
   html_to_pdf: ^0.8.1
   pdf_render: ^1.4.12
+  flutter_html: ^3.0.0-beta.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -65,6 +66,10 @@ dev_dependencies:
 
   # To add assets to your application, add an assets section, like this:
 flutter:
+  fonts:
+    - family: DM Sans
+      fonts:
+        - asset: fonts/DMSans-VariableFont_opsz,wght.ttf
   uses-material-design: true
   assets:
     - assets/hello.pdf
@@ -82,10 +87,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
